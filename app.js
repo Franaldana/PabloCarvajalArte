@@ -8,18 +8,8 @@ const WORKS = [
   { id: 6, title: 'Collage 6', thumb: 'img/collage6.jpg', price: 30000 }
 ];
 
-// === (Opcional) agrega estos campos si quieres personalizar modal por obra ===
-// Ej: { id: 1, ..., full: 'img/collage1-grande.jpg', desc: 'Descripción breve...' }
-
-// === Datos de transferencia (edita con los tuyos) ===
-const TRANSFER = {
-  bankName: "BancoEstado",
-  accountType: "Cuenta RUT",
-  accountName: "Pablo Carvajal",
-  rut: "12.345.678-9",
-  accountNumber: "12.345.678",
-  email: "pablo@ejemplo.cl"
-};
+// Antes tenías aquí el objeto TRANSFER con los datos bancarios.
+// Ya no lo necesitamos, así que lo eliminamos.
 
 function moneyCL(n){ return n.toLocaleString('es-CL'); }
 
@@ -37,16 +27,14 @@ if (!modal) {
       <p id="modalDesc"></p>
       <p id="modalPrice" class="modal__price"></p>
       <div class="modal__transfer">
-        <h3>Instrucciones de transferencia</h3>
-        <ul>
-          <li><strong>Banco:</strong> <span id="bankName"></span></li>
-          <li><strong>Tipo de cuenta:</strong> <span id="accountType"></span></li>
-          <li><strong>Titular:</strong> <span id="accountName"></span></li>
-          <li><strong>RUT:</strong> <span id="rut"></span></li>
-          <li><strong>N° de cuenta:</strong> <span id="accountNumber"></span></li>
-          <li><strong>Correo:</strong> <span id="email"></span></li>
-        </ul>
-        <p class="note">Envía el comprobante por Instagram y recibirás confirmación del envío o retiro en Santiago.</p>
+        <h3>Pasos a seguir</h3>
+        <ol>
+          <li>Escríbeme por Instagram para confirmar la disponibilidad del collage.</li>
+          <li>Indica el nombre o número del collage que quieres comprar.</li>
+          <li>Te enviaré los datos de pago y opciones de entrega.</li>
+          <li>Una vez confirmado el pago, coordinamos el envío o retiro.</li>
+        </ol>
+        <p class="note">Si tienes dudas, también puedes escribirme por Instagram.</p>
       </div>
     </div>`;
   document.body.appendChild(modal);
@@ -67,12 +55,8 @@ function openModal(item){
   modal.querySelector('#modalDesc').textContent = descTxt;
   modal.querySelector('#modalPrice').textContent = `$${moneyCL(item.price)} CLP`;
 
-  modal.querySelector('#bankName').textContent = TRANSFER.bankName;
-  modal.querySelector('#accountType').textContent = TRANSFER.accountType;
-  modal.querySelector('#accountName').textContent = TRANSFER.accountName;
-  modal.querySelector('#rut').textContent = TRANSFER.rut;
-  modal.querySelector('#accountNumber').textContent = TRANSFER.accountNumber;
-  modal.querySelector('#email').textContent = TRANSFER.email;
+  // Ojo: aquí antes se rellenaban los datos de TRANSFER (bankName, etc.).
+  // Esas líneas las eliminamos porque ya no existen esos elementos ni el objeto TRANSFER.
 
   modal.showModal();
 }
